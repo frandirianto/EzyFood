@@ -1,6 +1,8 @@
 package com.example.ezyfood.interfaces;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
     private final int picID;
     private final String name;
     private final String description;

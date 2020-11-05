@@ -13,7 +13,7 @@ import com.example.ezyfood.interfaces.Item;
 
 import java.util.ArrayList;
 
-public class ListItemAdapter  extends RecyclerView.Adapter<ListViewHolder>{
+public class ListItemAdapter extends RecyclerView.Adapter<ListViewItemHolder>{
 
     private final ArrayList<Item> listItem;
     private final Context c;
@@ -27,13 +27,13 @@ public class ListItemAdapter  extends RecyclerView.Adapter<ListViewHolder>{
 
     @NonNull
     @Override
-    public ListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public ListViewItemHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row, viewGroup, false);
-        return new ListViewHolder(view);
+        return new ListViewItemHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ListViewItemHolder holder, int position) {
         holder.setItem(listItem.get(position), c, targetClass);
     }
 

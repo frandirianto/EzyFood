@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EzyFood">
-        <activity android:name=".ItemDetailActivity"></activity>
+        <activity android:name=".ShoppingCartActivity"></activity>
+        <activity android:name=".ItemDetailActivity" />
         <activity android:name=".ItemsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
