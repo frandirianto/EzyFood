@@ -16,7 +16,7 @@ public class Foods {
     }
 
     private static void setTopSellingFoodsData(){
-        listFood.add(new Food(R.drawable.pic_nasi_goreng, "Nasi Goreng Spesial", "Nasi Goreng + Telur + Daging Sapi",120000));
+        listFood.add(new Food(R.drawable.pic_nasi_goreng, "Nasi Goreng Spesial", "Nasi Drinks + Telur + Daging Sapi",12000));
         listFood.add(new Food(R.drawable.pic_kwetiau, "Kwetiau Spesial", "Kwetiau Kuah + Pangsit Rebus",18000));
         listFood.add(new Food(R.drawable.pic_sate_ayam, "Sate Ayam", "Sate Ayam 15 tusuk",15000));
         listFood.add(new Food(R.drawable.pic_cumi_goreng, "Cumi Goreng", "Cumi Goreng Krispi + Sambal",20000));

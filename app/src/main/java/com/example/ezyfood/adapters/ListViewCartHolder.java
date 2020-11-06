@@ -1,7 +1,6 @@
 package com.example.ezyfood.adapters;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -34,19 +33,16 @@ public class ListViewCartHolder extends RecyclerView.ViewHolder {
     }
 
     @SuppressLint("SetTextI18n")
-    public void setItem(Cart cart, Context c){
+    public void setItem(Cart cart){
         itemPicture.setImageResource(cart.getItem().getPicID());
         itemNameText.setText(cart.getItem().getName());
         itemDescriptionText.setText(cart.getItem().getDescription());
         itemPriceText.setText("Rp. " + cart.getItem().getPrice());
         itemQuantityText.setText(""+cart.getQuantity());
-        itemSubtotalText.setText("Rp. " + (cart.getQuantity()*cart.getItem().getPrice()));
-        deleteCartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Carts.removeCart(cart);
-                adapter.notifyDataSetChanged();
-            }
+        itemSubtotalText.setText("Rp. " + (cart.getQuantity()* cart.getItem().getPrice()));
+        deleteCartButton.setOnClickListener(v -> {
+            Carts.removeCart(cart);
+            adapter.notifyDataSetChanged();
         });
     }
 }

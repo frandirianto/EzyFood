@@ -11,8 +11,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.ezyfood.adapters.ListItemAdapter;
+import com.example.ezyfood.data.Drinks;
 import com.example.ezyfood.data.Foods;
+import com.example.ezyfood.data.Snacks;
 import com.example.ezyfood.interfaces.ItemType;
+import com.example.ezyfood.models.Snack;
 
 public class ItemsActivity extends AppCompatActivity {
 
@@ -47,13 +50,13 @@ public class ItemsActivity extends AppCompatActivity {
                 break;
             case DRINK:
                 getSupportActionBar().setTitle(R.string.drinks);
-                recommendedAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, Foods.getRecommendedFoods());
-                topSellingAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, Foods.getRecommendedFoods());
+                recommendedAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, Drinks.getRecommendedDrinks());
+                topSellingAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, Drinks.getTopSellingDrinks());
                 break;
             case SNACK:
                 getSupportActionBar().setTitle(R.string.snacks);
-                recommendedAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, Foods.getRecommendedFoods());
-                topSellingAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, Foods.getRecommendedFoods());
+                recommendedAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, Snacks.getRecommendedSnacks());
+                topSellingAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, Snacks.getTopSellingSnacks());
                 break;
             default:
                 getSupportActionBar().setTitle(R.string.app_name);

@@ -21,4 +21,9 @@
     <string name="delete">Delete</string>
     <string name="carts">Shopping Carts</string>
     <string name="total_payment">Total Payment :</string>
+    <string name="update_quantity">Update Quantity</string>
+    <string name="empty">Empty Cart</string>
+    <string name="back_to_main_menu">Main Menu</string>
+    <string name="complete">Your Order Complete</string>
+    <string name="thank_you">Thank You</string>
 </resources>

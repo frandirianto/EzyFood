@@ -1,6 +1,5 @@
 package com.example.ezyfood.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +15,8 @@ import java.util.ArrayList;
 public class ListCartAdapter  extends RecyclerView.Adapter<ListViewCartHolder>{
 
     private final ArrayList<Cart> listCart;
-    private final Context c;
 
-    public ListCartAdapter(Context c,  ArrayList<Cart> list){
-        this.c = c;
+    public ListCartAdapter(ArrayList<Cart> list){
         this.listCart = list;
     }
 
@@ -32,7 +29,7 @@ public class ListCartAdapter  extends RecyclerView.Adapter<ListViewCartHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ListViewCartHolder holder, int position) {
-        holder.setItem(listCart.get(position), c);
+        holder.setItem(listCart.get(position));
     }
 
     @Override

@@ -26,6 +26,7 @@ android:layout_marginBottom="8dp">
             app:cardCornerRadius="12dp"
             android:layout_margin="5dp"
             android:elevation="10dp"
+            app:cardElevation="2dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -127,8 +128,8 @@ android:layout_marginBottom="8dp">
 
         <TextView
             android:id="@+id/cart_item_subtotal"
-            android:layout_width="65dp"
-            android:layout_height="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="@string/subtotal"

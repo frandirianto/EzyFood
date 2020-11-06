@@ -7,7 +7,6 @@ import androidx.cardview.widget.CardView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -49,8 +48,6 @@ public class ItemDetailActivity extends AppCompatActivity {
         minusButton = findViewById(R.id.minus_button);
         CardView orderMoreButton = findViewById(R.id.order_more_button);
         orderMoreButton.setOnClickListener(v -> finish());
-        quantity = 1;
-        setQuantity();
         setData(item);
     }
 
@@ -60,10 +57,24 @@ public class ItemDetailActivity extends AppCompatActivity {
         itemNameText.setText(item.getName());
         itemDescriptionText.setText(item.getDescription());
         itemPriceText.setText("Rp. " + item.getPrice());
-        itemQuantityText.setText(quantity.toString());
+        int checkIndex = Carts.findIndex(item);
+        if(checkIndex != -1) {
+            addToCartButton.setText(R.string.update_quantity);
+            quantity = Carts.getListCart().get(checkIndex).getQuantity();
+        }
+        else quantity = 1;
+        itemQuantityText.setText(quantity+"");
+        setQuantity();
         addToCartButton.setOnClickListener(v -> {
-            Cart cart = new Cart(item, quantity);
-            Carts.addCart(cart);
+            int check = Carts.findIndex(item);
+            boolean checkCart = Carts.findCart(item);
+            if(checkCart && check != -1)
+                Carts.getListCart().get(check).setQuantity(quantity);
+            else {
+                Cart cart = new Cart(item, quantity);
+                Carts.addCart(cart);
+            }
+            addToCartButton.setText(R.string.update_quantity);
             Toast.makeText(this, "Add To Cart Success", Toast.LENGTH_SHORT).show();
         });
     }
