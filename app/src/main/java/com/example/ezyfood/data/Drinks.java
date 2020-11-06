@@ -17,9 +17,9 @@ public class Drinks {
         }
 
         private static void setTopSellingDrinksData(){
-            listDrink.add(new Food(R.drawable.pic_nasi_goreng, "Da Vince Lemon Tea", "Lemon Tea",10000));
-            listDrink.add(new Food(R.drawable.pic_kwetiau, "Nescafe Coffee", "Coffee",5000));
-            listDrink.add(new Food(R.drawable.pic_sate_ayam, "Coca-cola", "Soft drink",5000));
+            listDrink.add(new Food(R.drawable.pic_lemon_tea, "Da Vince Lemon Tea", "Lemon Tea",10000));
+            listDrink.add(new Food(R.drawable.pic_coffee, "Nescafe Coffee", "Coffee",5000));
+            listDrink.add(new Food(R.drawable.pic_cola, "Coca-cola", "Soft drink",5000));
         }
         public static ArrayList<Item> getRecommendedDrinks() {
             listDrink = new ArrayList<>();

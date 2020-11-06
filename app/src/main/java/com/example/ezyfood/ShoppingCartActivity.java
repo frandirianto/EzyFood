@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.example.ezyfood.adapters.ListCartAdapter;
 import com.example.ezyfood.data.Carts;
 
+import java.util.Objects;
+
 public class ShoppingCartActivity extends AppCompatActivity {
 
     private TextView totalPaymentText, emptyText;
@@ -22,7 +24,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         init();
     }
@@ -33,10 +35,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
         emptyText = findViewById(R.id.empty_cart_text);
         totalPaymentText = findViewById(R.id.total_payment);
         totalPaymentText.setText("Rp. " + Carts.getTotalPayment());
-        payButton.setOnClickListener(v -> {
-            startActivity(new Intent(ShoppingCartActivity.this, TransactionHistory.class));
-        });
-        getSupportActionBar().setTitle(R.string.carts);
+        payButton.setOnClickListener(v -> startActivity(new Intent(ShoppingCartActivity.this, TransactionHistory.class)));
+        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.carts);
         RecyclerView recyclerView = findViewById(R.id.cart_item_list);
         ListCartAdapter listCartAdapter = new ListCartAdapter(Carts.getListCart());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
