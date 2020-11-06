@@ -17,14 +17,10 @@ public class Foods {
 
     private static void setTopSellingFoodsData(){
         listFood.add(new Food(R.drawable.pic_nasi_goreng, "Nasi Goreng Spesial", "Nasi Drinks + Telur + Daging Sapi",12000));
-        listFood.add(new Food(R.drawable.pic_kwetiau, "Kwetiau Spesial", "Kwetiau Kuah + Pangsit Rebus",18000));
         listFood.add(new Food(R.drawable.pic_sate_ayam, "Sate Ayam", "Sate Ayam 15 tusuk",15000));
-        listFood.add(new Food(R.drawable.pic_cumi_goreng, "Cumi Goreng", "Cumi Goreng Krispi + Sambal",20000));
         listFood.add(new Food(R.drawable.pic_mie_ayam, "Mie Ayam", "Mie Ayam + Pangsit Goreng",12000));
-        listFood.add(new Food(R.drawable.pic_ayam_goreng, "Ayam Goreng", "Ayam Goreng 1/2 ekor + Lalap",13000));
-        listFood.add(new Food(R.drawable.pic_soto, "Soto Ayam", "Soto Ayam + Emping",10000));
-        listFood.add(new Food(R.drawable.pic_udang_renyah, "Udang Renyah", "Udang Goreng Krispi + Saus",20000));
     }
+
     public static ArrayList<Item> getRecommendedFoods() {
         listFood = new ArrayList<>();
         setRecommendedFoodsData();
