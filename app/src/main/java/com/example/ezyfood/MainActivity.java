@@ -11,8 +11,12 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.ezyfood.interfaces.ItemType;
+import com.example.ezyfood.models.Restaurant;
+
+import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity  {
+
 
     FrameLayout snacksButton, foodsButton, drinksButton, topUpButton;
 
@@ -20,10 +24,16 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         init();
     }
 
     void init(){
+        Bundle extras = getIntent().getExtras();
+        Restaurant restaurant = MapsActivity.temp;
+        getSupportActionBar().setTitle(restaurant.getName());
         foodsButton = findViewById(R.id.foods_button);
         drinksButton = findViewById(R.id.drinks_button);
         snacksButton = findViewById(R.id.snacks_button);
@@ -31,20 +41,27 @@ public class MainActivity extends AppCompatActivity  {
 
         foodsButton.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, ItemsActivity.class);
+            i.putExtra("restaurant", (Serializable) restaurant);
             i.putExtra("types", ItemType.FOOD);
             startActivity(i);
         });
         drinksButton.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, ItemsActivity.class);
+            i.putExtra("restaurant", (Serializable) restaurant);
             i.putExtra("types", ItemType.DRINK);
             startActivity(i);
         });
         snacksButton.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, ItemsActivity.class);
+            i.putExtra("restaurant", (Serializable) restaurant);
             i.putExtra("types", ItemType.SNACK);
             startActivity(i);
         });
-        topUpButton.setOnClickListener(v -> Toast.makeText(MainActivity.this, "Top Up Success",Toast.LENGTH_LONG).show());
+
+        topUpButton.setOnClickListener(v -> {
+            Intent i = new Intent(MainActivity.this, TopUpActivity.class);
+            startActivity(i);
+        });
     }
 
     @Override
@@ -59,5 +76,17 @@ public class MainActivity extends AppCompatActivity  {
             startActivity(new Intent(MainActivity.this, ShoppingCartActivity.class));
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        finish();
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(MainActivity.this, MapsActivity.class));
     }
 }

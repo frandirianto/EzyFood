@@ -21,7 +21,7 @@ import com.example.ezyfood.models.Cart;
 public class ItemDetailActivity extends AppCompatActivity {
 
     private ImageView itemPicture;
-    private TextView itemNameText, itemDescriptionText, itemPriceText, itemQuantityText;
+    private TextView itemNameText, itemDescriptionText, itemStockText, itemPriceText, itemQuantityText;
     private Button addToCartButton,  plusButton, minusButton;
     private Integer quantity;
 
@@ -41,6 +41,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         itemPicture = findViewById(R.id.item_detail_pic);
         itemNameText = findViewById(R.id.item_detail_name);
         itemDescriptionText = findViewById(R.id.item_detail_description);
+        itemStockText = findViewById(R.id.item_detail_stock);
         itemPriceText = findViewById(R.id.item_detail_price);
         itemQuantityText = findViewById(R.id.item_detail_quantity);
         addToCartButton = findViewById(R.id.add_to_cart_button);
@@ -56,15 +57,19 @@ public class ItemDetailActivity extends AppCompatActivity {
         itemPicture.setImageResource(item.getPicID());
         itemNameText.setText(item.getName());
         itemDescriptionText.setText(item.getDescription());
+        itemStockText.setText("Stock : " + item.getStock());
         itemPriceText.setText("Rp. " + item.getPrice());
         int checkIndex = Carts.findIndex(item);
+        if(item.getStock() <= 0){
+            addToCartButton.setEnabled(false);
+        }
         if(checkIndex != -1) {
             addToCartButton.setText(R.string.update_quantity);
             quantity = Carts.getListCart().get(checkIndex).getQuantity();
         }
         else quantity = 1;
         itemQuantityText.setText(quantity+"");
-        setQuantity();
+        setQuantity(item.getStock());
         addToCartButton.setOnClickListener(v -> {
             int check = Carts.findIndex(item);
             boolean checkCart = Carts.findCart(item);
@@ -80,9 +85,9 @@ public class ItemDetailActivity extends AppCompatActivity {
     }
 
     @SuppressLint("SetTextI18n")
-    private void setQuantity(){
+    private void setQuantity(int stock){
         plusButton.setOnClickListener(v -> {
-            quantity +=1;
+            if(stock > quantity)quantity +=1;
             itemQuantityText.setText(quantity.toString());
         });
         minusButton.setOnClickListener(v -> {

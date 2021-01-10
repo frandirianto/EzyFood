@@ -11,13 +11,13 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/recommended_foods"
+        android:id="@+id/title_items"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="@string/recommended_foods"
+        android:text="@string/list_of_items"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -25,37 +25,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recommended_item_list"
+        android:id="@+id/item_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recommended_foods"
+        app:layout_constraintTop_toBottomOf="@+id/title_items"
         tools:listitem="@layout/item_row" />
 
-    <TextView
-        android:id="@+id/top_selling_foods"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/top_selling_foods"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recommended_item_list" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/top_selling_item_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_selling_foods"
-        tools:listitem="@layout/item_row" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

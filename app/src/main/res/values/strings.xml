@@ -8,8 +8,8 @@
     <string name="item_price">Price</string>
     <string name="item_description">Description</string>
     <string name="add_to_cart">Add to Cart</string>
-    <string name="recommended_foods">Recommended Foods</string>
-    <string name="top_selling_foods">Top-Selling Foods</string>
+    <string name="list_of_items">List of Items</string>
+    <string name="stock">Stock</string>
     <string name="item_quanity">Item Quantity</string>
     <string name="number">1</string>
     <string name="plus">+</string>
@@ -26,4 +26,6 @@
     <string name="back_to_main_menu">Main Menu</string>
     <string name="complete">Your Order Complete</string>
     <string name="thank_you">Thank You</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="balance">Balance</string>
 </resources>

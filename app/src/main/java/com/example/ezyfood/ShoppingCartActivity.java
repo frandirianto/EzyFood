@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ezyfood.adapters.ListCartAdapter;
 import com.example.ezyfood.data.Carts;
@@ -18,7 +19,7 @@ import java.util.Objects;
 
 public class ShoppingCartActivity extends AppCompatActivity {
 
-    private TextView totalPaymentText, emptyText;
+    private TextView totalPaymentText, emptyText, balanceText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +34,16 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private void init(){
         Button payButton = findViewById(R.id.pay_button);
         emptyText = findViewById(R.id.empty_cart_text);
+        balanceText = findViewById(R.id.textView7);
         totalPaymentText = findViewById(R.id.total_payment);
-        totalPaymentText.setText("Rp. " + Carts.getTotalPayment());
-        payButton.setOnClickListener(v -> startActivity(new Intent(ShoppingCartActivity.this, TransactionHistory.class)));
+        long money =  MapsActivity.money;
+        balanceText.setText("Cash : Rp. " +money );
+        int total =Carts.getTotalPayment();
+        totalPaymentText.setText("Rp. " + total);
+        payButton.setOnClickListener(v -> {
+            if(money < total)  Toast.makeText(ShoppingCartActivity.this, "Can't pay, you must top up",Toast.LENGTH_LONG).show();
+            else startActivity(new Intent(ShoppingCartActivity.this, TransactionHistory.class));
+        });
         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.carts);
         RecyclerView recyclerView = findViewById(R.id.cart_item_list);
         ListCartAdapter listCartAdapter = new ListCartAdapter(Carts.getListCart());

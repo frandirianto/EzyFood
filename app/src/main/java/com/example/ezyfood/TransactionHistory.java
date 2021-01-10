@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.ezyfood.adapters.ListCartAdapter;
 import com.example.ezyfood.adapters.ListOrderAdapter;
 import com.example.ezyfood.data.Carts;
+import com.example.ezyfood.models.Cart;
 
 public class TransactionHistory extends AppCompatActivity {
 
@@ -23,6 +24,8 @@ public class TransactionHistory extends AppCompatActivity {
         setContentView(R.layout.activity_transaction_history);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        long money = MapsActivity.money;
+        MapsActivity.money = money - Carts.getTotalPayment();
         init();
     }
 
@@ -35,7 +38,7 @@ public class TransactionHistory extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.order_item_list);
         mainMenuButton.setOnClickListener(v -> {
             Intent i  = new Intent(TransactionHistory.this, MainActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Carts.clearCart();
             startActivity(i);
             this.finish();

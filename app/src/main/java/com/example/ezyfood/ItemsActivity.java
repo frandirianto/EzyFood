@@ -11,63 +11,56 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.ezyfood.adapters.ListItemAdapter;
-import com.example.ezyfood.data.Drinks;
-import com.example.ezyfood.data.Foods;
-import com.example.ezyfood.data.Snacks;
 import com.example.ezyfood.interfaces.ItemType;
-import com.example.ezyfood.models.Snack;
+import com.example.ezyfood.models.Restaurant;
+
+import java.util.Objects;
 
 public class ItemsActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView, recyclerView2;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_items);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         init();
     }
 
     private void init(){
         Bundle extras = getIntent().getExtras();
+        Restaurant res = (Restaurant) extras.getSerializable("restaurant");
         ItemType type = (ItemType) extras.getSerializable("types");
 
-        recyclerView = findViewById(R.id.recommended_item_list);
-        recyclerView2 = findViewById(R.id.top_selling_item_list);
-        setData(type);
+        recyclerView = findViewById(R.id.item_list);
+        setData(res, type);
     }
 
-    private void setData(ItemType type){
-        ListItemAdapter recommendedAdapter, topSellingAdapter;
+    private void setData(Restaurant res, ItemType type){
+        ListItemAdapter listAdapter;
 
         switch (type){
             case FOOD:
                 getSupportActionBar().setTitle(R.string.foods);
-                recommendedAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, Foods.getRecommendedFoods());
-                topSellingAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, Foods.getTopSellingFoods());
+                listAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, res.getFoods());
                 break;
             case DRINK:
                 getSupportActionBar().setTitle(R.string.drinks);
-                recommendedAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, Drinks.getRecommendedDrinks());
-                topSellingAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, Drinks.getTopSellingDrinks());
+                listAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, res.getDrinks());
                 break;
             case SNACK:
                 getSupportActionBar().setTitle(R.string.snacks);
-                recommendedAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, Snacks.getRecommendedSnacks());
-                topSellingAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, Snacks.getTopSellingSnacks());
+                listAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, res.getSnacks());
                 break;
             default:
                 getSupportActionBar().setTitle(R.string.app_name);
-                recommendedAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, Foods.getRecommendedFoods());
-                topSellingAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, Foods.getTopSellingFoods());
+                listAdapter = new ListItemAdapter(ItemsActivity.this, ItemDetailActivity.class, res.getFoods());
                 break;
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(recommendedAdapter);
-        recyclerView2.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView2.setAdapter(topSellingAdapter);
+        recyclerView.setAdapter(listAdapter);
     }
 
     @Override
